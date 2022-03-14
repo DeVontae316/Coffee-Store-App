@@ -29,17 +29,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>
-          {/*  <Link href="/fonts/IBMPlexSans-Bold.ttf" as="font">
-            <a></a>
-          </Link>
-          <Link href="/fonts/IBMPlexSans-SemiBold.ttf" as="font">
-            <a></a>
-          </Link>
-          <Link href="/fonts/IBMPlexSans-Regular.ttf" as="font">
-            <a></a>
-          </Link> */}
-        </Head>
+        <Head></Head>
         <body>
           <Main />
           <NextScript />

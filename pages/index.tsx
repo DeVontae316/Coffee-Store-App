@@ -7,8 +7,28 @@ import { Card } from "../components/Card";
 import styles from "../styles/Home.module.css";
 import data from "../coffee-stores.json";
 
-export default function Home() {
-  console.log(`data:${data[0].name}`);
+interface Data {
+  Coffedata: {
+    id: number;
+    name: string;
+    imgUrl: string;
+    websiteUrl: string;
+    address: string;
+    neighbourhood: string;
+  }[];
+}
+
+export async function getStaticProps(context) {
+  return {
+    props: {
+      Coffedata: data,
+    }, // will be passed to the page component as props
+  };
+}
+export default function Home(props: Data) {
+  console.log(`data:${data[0] && data[0].name}`);
+  console.log("props", props);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -25,15 +45,23 @@ export default function Home() {
           btnText="View stores near by"
         />
         <div className={styles.heroImage}>
-          <Image width={700} height={400} src={"/static/hero-image.png"} />
+          <Image
+            width={700}
+            height={400}
+            src={"/static/hero-image.png"}
+            alt=""
+          />
         </div>
+        <h2 className={styles.heading2}>
+          {props.Coffedata.length !== 0 ? "Toronto Stores" : "No Stores"}
+        </h2>
         <div className={styles.cardLayout}>
-          {data.map((store) => (
+          {props.Coffedata.map((store) => (
             <Card
-              key={store.id}
-              imageUrl={store.imgUrl}
-              route={`/coffee-store/${store.id}`}
-              name={store.name}
+              key={store?.id}
+              imageUrl={store?.imgUrl}
+              route={`/coffee-store/${store?.id}`}
+              name={store?.name}
               className={styles.card}
             />
           ))}

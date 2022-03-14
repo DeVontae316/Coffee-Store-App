@@ -24,7 +24,8 @@ export const Card = ({ name, imageUrl, route }: Props) => {
               className={styles.cardImage}
               src={imageUrl}
               width={260}
-              height={160}
+              height={300}
+              alt=""
             />
           </div>
         </div>
